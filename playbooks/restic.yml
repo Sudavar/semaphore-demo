@@ -1,0 +1,20 @@
+---
+- hosts: "all"
+  become: true
+  # remote_user: "{{ user | default('root') }}"
+  tasks:
+    - name: Download restic package from github
+      get_url:
+        url: https://github.com/restic/restic/releases/download/v{{ restic_version }}/restic_{{ restic_version }}_linux_amd64.bz2
+        dest: /tmp/restic.bz2
+
+    - name: Extract restic.bz2
+      command: bzip2 -df /tmp/restic.bz2
+
+    - name: Install restic
+      command: install /tmp/restic /usr/local/bin/restic
+
+    - name: Cleanup restic leftover files
+      file:
+        name: /tmp/restic
+        state: absent
