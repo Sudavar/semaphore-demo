@@ -1,11 +1,11 @@
 ---
-- hosts: "all"
+- hosts: "{{ host | default('linoder') }}"
   become: true
   # remote_user: "{{ user | default('root') }}"
   tasks:
     - name: Download restic package from github
       get_url:
-        url: https://github.com/restic/restic/releases/download/v{{ restic_version }}/restic_{{ restic_version }}_linux_amd64.bz2
+        url: https://github.com/restic/restic/releases/download/v0.16.0/restic_0.16.0_linux_amd64.bz2
         dest: /tmp/restic.bz2
 
     - name: Extract restic.bz2
