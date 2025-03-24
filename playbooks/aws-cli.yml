@@ -1,0 +1,22 @@
+---
+- hosts: laptop
+  become: true
+  tasks:
+    - name: Install python3-pip - Debian 11
+      apt:
+        name:
+          - python3-pip
+        state: present
+
+    # Installing python3-venv and then passing it as argument
+    - name: Install python3 virtualenv (instead of venv) - Debian 11
+      pip:
+        name: virtualenv
+        state: present
+
+    - name: Install AWS-CLI via PIP - Debian 11
+      pip:
+        name: awscli
+        version: "1.22.55"
+        state: present
+        virtualenv: "/opt/aws-cli"
