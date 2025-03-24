@@ -3,15 +3,15 @@
   become: true
   remote_user: root
   tasks:
-    - name: Install python3-pip - Debian 11
+    - name: Install python3-pip and python3-virtualenv
       apt:
         name:
           - python3-pip
-          - python3-venv
+          - python3-virtualenv
         update_cache: yes
         state: present
 
-    - name: Install AWS-CLI via PIP - Debian 11
+    - name: Install AWS-CLI via PIP
       pip:
         name: awscli
         version: "1.22.55"
