@@ -13,7 +13,7 @@ echo "---------------------------------"
 whoami
 echo "---------------------------------"
 # public IP
-curl -4 ifconfig.me
+curl -4 -sS ifconfig.me
 echo "---------------------------------"
 # os version
 cat /etc/os-release
