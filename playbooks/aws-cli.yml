@@ -1,7 +1,7 @@
 ---
-- hosts: "{{ hosts_string | default('linoder') }}"
+- hosts: "{{ host | default('linoder') }}"
   become: true
-  remote_user: root
+  remote_user: "{{ user | default('ansible_user') }}"
   tasks:
     - name: Install python3-pip and python3-virtualenv
       apt:
